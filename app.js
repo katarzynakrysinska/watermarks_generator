@@ -52,11 +52,26 @@ const startApp = async () => {
     type: 'input',
     message: 'What file do you want to mark?',
     default: 'test.jpeg',
-  }, {
+  },
+  {
     name: 'watermarkType',
     type: 'list',
     choices: ['Text watermark', 'Image watermark'],
   }])
+
+  if(answer.start) {
+    const effect = await inquirer.prompt([{
+    name: 'effect',
+    message: 'Do you want to change sth?',
+    type: 'confirm',
+    },
+    {
+    name: 'effectType',
+    type: 'list',
+    choices: ['make image brighter', 'increase contrast'],
+  }]);
+  }
+
   if (options.watermarkType === 'Text watermark') {
     const text = await inquirer.prompt([{
       name: 'value',
